@@ -1,0 +1,14 @@
+<div class="flex items-start justify-between bg-white rounded-xl drop-shadow-lg px-8 py-2">
+  <div class="flex items-start">
+    <div class="bg-white drop-shadow-xl p-4 rounded-xl">
+      <img src="/assets/images/avatar.svg" alt="avatar" class="object-cover w-[2rem] h-[2rem]">
+    </div>
+    <div class="flex flex-col ml-4">
+      <h4 class="text-lg font-semibold">{{ review.user.name }}</h4>
+      <h6 class="text-gray text-sm mb-2">{{ review.createdAt }}</h6>
+      <p>{{ review.description }}</p>
+    </div>
+  </div>
+
+  <span class="text-2xl text-black font-bold"><strong class="text-primary text-3xl">{{review.rating}}</strong>/10</span>
+</div>

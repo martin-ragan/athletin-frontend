@@ -1,0 +1,21 @@
+<div class="absolute w-[50rem] rounded-xl bg-white z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-12 py-8 h-[40rem] drop-shadow-lg">
+  <form (ngSubmit)="onSubmit()" [formGroup]="workoutForm">
+    <div class="mb-8 w-full flex items-center">
+      <input type="text" formControlName="name" class="w-full border-b border-gray py-2 flex-1 focus:outline-0" placeholder="Workout name">
+      <button (click)="closeForm()" type="button" class="bg-red-500 text-white px-4 py-2 rounded-xl w-fit ">Cancel</button>
+    </div>
+
+    <div formArrayName="exercises" class="mb-4 flex flex-col max-h-[20rem] overscroll-y-auto">
+      <h3 class="text-xl font-bold tracking-wide mb-4">Exercises</h3>
+      <div [formGroupName]="i" class="flex items-center gap-4 mb-8 w-full" *ngFor="let exercise of exercises.controls; let i = index;">
+        <input formControlName="name" class="border border-gray text-black px-4 py-2 focus:outline-0" type="text" placeholder="Exercise name">
+        <input formControlName="reps" class="w-[8rem] border border-gray text-black px-4 py-2 focus:outline-0" type="number" placeholder="Reps">
+        <input formControlName="sets" class="w-[8rem] border border-gray text-black px-4 py-2 focus:outline-0" type="number" placeholder="Sets">
+        <button *ngIf="!viewOnly" (click)="removeExercise(i)" type="button" class="bg-red-500 text-white px-4 py-2 rounded-xl w-fit ">Remove</button>
+      </div>
+      <button *ngIf="!viewOnly" (click)="addExercise()" type="button" class="bg-blue-500 text-white px-4 py-2 rounded-xl w-fit ">+ Add Exercises</button>
+    </div>
+
+    <button *ngIf="!viewOnly" type="submit" class="bg-primary text-white px-4 py-2 rounded-xl">{{isCreating ? 'Create' : 'Save'}} workout</button>
+  </form>
+</div>

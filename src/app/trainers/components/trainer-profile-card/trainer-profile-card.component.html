@@ -1,0 +1,29 @@
+<div class="py-10 px-8 bg-white drop-shadow-xl rounded-3xl">
+  <div class="flex items-start justify-between w-full mb-8">
+    <img class="w-[7rem] h-[7rem] object-cover rounded-lg" [src]="trainer.image" alt="Logo">
+    <span *ngIf="trainer.rating" class="text-4xl text-black font-bold"><strong class="text-primary text-5xl">{{trainer.rating}}</strong>/10</span>
+  </div>
+  <div class="mb-4">
+    <h3 class="mb-2 text-3xl font-bold uppercase">{{trainer.name}}</h3>
+    <h4 class="text-gray text-lg font-semi tracking-wide mb-8">{{trainer.location}}</h4>
+    <div class="flex items-center justify-start gap-2 border-gray border-b-2 pb-8">
+      <span class="p-2 flex items-center justify-center bg-primary rounded-full">
+        <img class="w-[1.4rem] h-[1.4rem]" src="/assets/images/instagram.svg" alt="instagram">
+      </span>
+      <span class="p-2 flex items-center justify-center bg-primary rounded-full">
+        <img class="w-[1.4rem] h-[1.4rem]" src="/assets/images/linkedin.svg" alt="linkedin">
+      </span>
+    </div>
+  </div>
+  <div class="flex items-center w-full justify-between">
+    <div class="grid grid-cols-3 gap-2">
+      <span *ngFor="let category of trainer.categories" class="text-sm bg-gray px-4 py-2 font-semibold text-black rounded-3xl">
+        {{ category.name }}
+      </span>
+    </div>
+
+    <a class="text-primary text-2xl" [routerLink]="trainer.id">
+      View Profile
+    </a>
+  </div>
+</div>

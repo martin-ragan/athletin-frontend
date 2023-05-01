@@ -1,0 +1,21 @@
+<app-navigation></app-navigation>
+<div class="h-full">
+  <div class="bg-trainers-image h-[25rem] py-48">
+    <div class="container mx-auto">
+      <h2 class="text-3xl tracking-wide font-semibold text-white mb-8 uppercase">Find yourself a <strong class="text-yellow">trainer</strong></h2>
+
+      <div>
+        <form>
+          <div class="mb-4 flex items-center">
+            <input type="text" class="px-4 py-2 rounded-l-xl h-[3rem] w-full max-w-[50rem] focus:outline-none" placeholder="Search trainer">
+            <button class="bg-primary px-8 py-2 h-[3rem] rounded-r-xl text-white font-semibold">Search</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto grid grid-cols-2 gap-10 py-24">
+    <app-trainer-profile-card *ngFor="let trainer of trainers" [trainer]="trainer"></app-trainer-profile-card>
+  </div>
+</div>

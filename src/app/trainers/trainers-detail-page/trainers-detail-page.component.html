@@ -1,0 +1,58 @@
+<div class="min-h-screen">
+  <app-navigation [darkMode]="true"></app-navigation>
+
+  <div class="container mx-auto pt-[10vh] h-full flex flex-col justify-between">
+    <div class="w-full flex items-start flex-1">
+      <div class="flex flex-col items-center gap-4 basis-[30rem] mr-12">
+        <img [src]="trainer?.image"
+             alt="profile picture" class="w-[10rem] h-[10rem] rounded-full object-cover drop-shadow-md">
+        <span class="text-4xl text-black font-bold" ><strong class="text-primary text-5xl">{{trainer?.rating ?? 'n'}}</strong>/10</span>
+        <div class="grid grid-cols-3 gap-2">
+          <span *ngFor="let category of trainer?.categories" class="text-sm bg-gray px-4 py-2 font-semibold text-black rounded-3xl">
+            {{ category.name }}
+          </span>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-start gap-4 flex-shrink mb-24">
+        <h1 class="text-4xl font-bold tracking-wide">{{ trainer?.name + ' ' + trainer?.surname }}</h1>
+        <h2 class="text-white text-lg font-semi tracking-wide mb-8">{{ trainer?.location }}</h2>
+        <div class="flex items-center gap-2 w-max-[10rem] mb-8">
+          <a *ngIf="trainer?.instagramLink" [href]="trainer?.instagramLink" class="p-2 flex items-center justify-center bg-primary rounded-full">
+            <img class="w-[1.4rem] h-[1.4rem]" src="/assets/images/instagram.svg" alt="instagram">
+          </a>
+          <a *ngIf="trainer?.linkedinLink" [href]="trainer?.linkedinLink" class="p-2 flex items-center justify-center bg-primary rounded-full">
+            <img class="w-[1.4rem] h-[1.4rem]" src="/assets/images/linkedin.svg" alt="linkedin">
+          </a>
+        </div>
+
+        <p class="mb-12">
+          {{ trainer?.description }}
+        </p>
+
+        <button *ngIf="isLogged" (click)="sendRequest()" [disabled]="isSubscribed$ | async" role="button" class="bg-primary tracking-wide px-12 py-4 rounded text-white uppercase text-lg disabled:bg-purple-500">
+          {{(isSubscribed$ | async) ? 'Subscribed' : 'Send request'}}
+        </button>
+      </div>
+    </div>
+
+    <section>
+      <h3 class="text-primary text-2xl tracking-wide font-bold uppercase mb-12">Reviews</h3>
+
+      <div class="flex flex-col gap-8">
+
+        <app-review *ngFor="let review of trainer?.reviews" [review]="review"></app-review>
+
+        <form (ngSubmit)="sendReview()" [formGroup]="reviewForm" *ngIf="isLogged" class="bg-white rounded-xl px-12 py-8 w-[40rem] drop-shadow-lg flex flex-col mx-auto">
+          <h3 class="text-black uppercase tracking-wide text-xl font-bold mb-12">Add a review</h3>
+          <label for="small-range" class="block mb-2 text-sm font-medium text-black">Score: {{reviewForm.controls['rating'].value}}</label>
+          <input formControlName="rating" id="small-range" type="range" max="10" min="1" step="1" class="w-[20rem] h-1 mb-6 bg-gray rounded-lg appearance-none cursor-pointer range-sm">
+          <textarea formControlName="description" placeholder="Write your satisfaction..." class="w-[30rem] border border-gray px-2 py-2 mb-12 rounded placeholder-gray"></textarea>
+          <button type="submit" class="bg-primary tracking-wide px-6 py-2 w-[20rem] rounded text-white uppercase text-lg">
+            Send
+          </button>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>

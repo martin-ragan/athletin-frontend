@@ -1,0 +1,41 @@
+<div class="flex items-stretch w-full h-screen">
+  <aside class="bg-primary h-full w-[25rem] px-8 py-12 flex flex-col items-start">
+    <h2 class="text-white text-4xl tracking-wide font-bold mb-24">Dashboard</h2>
+
+    <ul class="flex flex-col items-start list-none mb-24 flex-1">
+      <li class="mb-6">
+        <a class="text-white flex items-center text-xl decoration-0 tracking-wider uppercase" routerLinkActive="font-bold" [routerLink]="'workouts'">
+          <img class="inline-block mr-4 w-full h-full max-w-[2rem] max-h-[2rem]" src="/assets/images/workouts-icon.svg" alt="Workouts">
+          <span>My workouts</span>
+        </a>
+      </li>
+      <li *ngIf="!isTrainer" class="mb-6">
+        <a class="text-white flex items-center text-xl decoration-0 tracking-wider uppercase" routerLinkActive="font-bold" [routerLink]="'trainers'">
+          <img class="inline-block mr-4 w-full h-full max-w-[2rem] max-h-[2rem]" src="/assets/images/trainers-icon.svg" alt="Trainers">
+          <span>My trainers</span>
+        </a>
+      </li>
+      <li *ngIf="isTrainer" class="mb-6">
+        <a class="text-white flex items-center text-xl decoration-0 tracking-wider uppercase" routerLinkActive="font-bold" [routerLink]="'clients'">
+          <img class="inline-block mr-4 w-full h-full max-w-[2rem] max-h-[2rem]" src="/assets/images/trainers-icon.svg" alt="Clients">
+          <span>My clients</span>
+        </a>
+      </li>
+      <li class="mb-6">
+        <a class="text-white flex items-center text-xl decoration-0 tracking-wider uppercase" routerLinkActive="font-bold" [routerLink]="'settings'">
+          <img class="inline-block mr-4 w-full h-full max-w-[2rem] max-h-[2rem]" src="/assets/images/settings-icon.svg" alt="Settings">
+          <span>Settings</span>
+        </a>
+      </li>
+    </ul>
+
+    <a class="text-white text-xl flex items-center justify-center w-full px-4 py-2 border border-white
+              rounded-full mx-auto hover:bg-white hover:text-primary transition-colors"
+       [routerLink]="'logout'">Logout
+    </a>
+  </aside>
+
+  <div class="overflow-y-auto max-h-full flex-1 px-12 pt-12">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<nav class="w-full h-[8vh] z-20 absolute text-white" [class.bg-black]="darkMode">
+  <div class="container mx-auto flex items-center justify-between h-full">
+    <h2>
+      <a routerLink="/" class="text-4xl font-poppins font-bold tracking-wider">Athletin</a>
+    </h2>
+    <ul class="list-none flex items-center justify-center gap-24">
+      <li>
+        <a class="text-lg tracking-widest uppercase font-light transition ease-in-out delay-150" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="font-bold" routerLink="/">Home</a>
+      </li>
+      <li>
+        <a class="text-lg tracking-widest uppercase font-light transition ease-in-out delay-150" routerLinkActive="font-bold" routerLink="/trainers">Trainers</a>
+      </li>
+      <li *ngIf="!(isLogged$ | async)">
+        <a class="text-lg tracking-widest uppercase font-light transition ease-in-out delay-150" routerLinkActive="font-bold" routerLink="/log-in">Log In</a>
+      </li>
+
+      <li *ngIf="(isLogged$ | async)">
+        <a class="text-lg tracking-widest uppercase font-light transition ease-in-out delay-150" routerLinkActive="font-bold" routerLink="/dashboard">Profile</a>
+      </li>
+    </ul>
+  </div>
+</nav>
